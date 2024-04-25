@@ -4,8 +4,8 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score, classification_report, confusion_matrix
 
 # reading data
-train_data = pd.read_csv("dataset/training.csv")
-test_data = pd.read_csv("dataset/testing.csv")
+train_data = pd.read_csv("dataset/Training.csv")
+test_data = pd.read_csv("dataset/Testing.csv")
 
 print(train_data.drop(train_data.columns[len(train_data.columns)-1], axis=1))
 
