@@ -8,8 +8,6 @@ test_data = pd.read_csv("dataset/Testing.csv")
 
 # needs to be dropped last column created by an ',' at the end
 train_data = train_data.drop(train_data.columns[len(train_data.columns)-1], axis=1)
-dataset_headers = train_data.head(0)
-
 
 # features => symptons
 # target => prognosis
@@ -18,15 +16,19 @@ dataset_headers = train_data.head(0)
 x_train = train_data.drop("prognosis", axis=1) # selects all columns but not prognosis
 y_train = train_data["prognosis"]
 
-# x_test = test_data.drop("prognosis", axis=1)
-# y_test = test_data["prognosis"]
+x_test = test_data.drop("prognosis", axis=1)
+y_test = test_data["prognosis"]
 
 # training model
 model =  DecisionTreeClassifier(random_state=42)
-model.fit(x_train.values, y_train)
-# it's supposed to return Fungal Infection as response
+model.fit(x_train, y_train)
+
+y_test_prediction = model.predict(x_test)
+
+score = accuracy_score(y_test, y_test_prediction)
+
 x_for_testing = [[1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]]
 
+model.fit(x_train.values, y_train)
 # prediction
 y_prediction = model.predict(x_for_testing)
-print(y_prediction)
