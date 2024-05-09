@@ -1,4 +1,5 @@
 from src.DecisionTreeModel import useDecisionTree
+from src.RandomForestModel import useRandomForest
 import random
 import numpy as np
 
@@ -14,6 +15,10 @@ for i in range(num_features):
     random_value = random.uniform(min_value, max_value)
     test_input.append(random_value)
 
-dtResult = useDecisionTree(np.array(test_input).reshape(1, -1));
+test_values = np.array(test_input).reshape(1, -1);
 
-print(f"The current prognosis is '{dtResult[0]}' with model accuracy score {dtResult[1]}%");
+dtResult = useDecisionTree(test_values);
+rfResult = useRandomForest(test_values);
+
+print(f"DecisionTree result: '{dtResult[0]}' ({dtResult[1]}% of accuracy)");
+print(f"RandomForest result: '{rfResult[0]}' ({rfResult[1]}% of accuracy)");
