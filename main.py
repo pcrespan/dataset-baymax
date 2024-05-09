@@ -1,6 +1,7 @@
 from src.DecisionTreeModel import useDecisionTree
 from src.RandomForestModel import useRandomForest
 from src.KNeighborsModel import useKNeighbors
+from src.SVCModel import useSVC
 import random
 import numpy as np
 
@@ -21,7 +22,9 @@ test_values = np.array(test_input).reshape(1, -1);
 dtResult = useDecisionTree(test_values);
 rfResult = useRandomForest(test_values);
 knResult = useKNeighbors(test_values);
+svcResult = useSVC(test_values);
 
 print(f"DecisionTree result: '{dtResult[0]}' ({dtResult[1]}% of accuracy)");
 print(f"RandomForest result: '{rfResult[0]}' ({rfResult[1]}% of accuracy)");
 print(f"K-nearest result: '{knResult[0]}' ({knResult[1]}% of accuracy)");
+print(f"SVC result: '{svcResult[0]}' ({svcResult[1]}% of accuracy)");
