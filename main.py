@@ -1,26 +1,30 @@
-import pandas as pd
-from sklearn.tree import DecisionTreeClassifier
-from sklearn.ensemble import RandomForestClassifier
-from sklearn.metrics import accuracy_score, classification_report, confusion_matrix
+from src.DecisionTreeModel import useDecisionTree
+from src.RandomForestModel import useRandomForest
+from src.KNeighborsModel import useKNeighbors
+from src.SVCModel import useSVC
+import random
+import numpy as np
 
-# reading data
-train_data = pd.read_csv("dataset/training.csv")
-test_data = pd.read_csv("dataset/testing.csv")
+# these variables needs to be changed for symptons collected from frontend and passed it to backend, then use them here
+num_features = 132
 
-print(train_data.drop(train_data.columns[len(train_data.columns)-1], axis=1))
+test_input = []
 
-# features (X) and target (Y)
-x_train = train_data.drop("prognosis", axis=1) # selects all columns but prognosis
-y_train = train_data["prognosis"]
+# random list for predicting
+for i in range(num_features):
+    min_value = 0
+    max_value = 1
+    random_value = random.uniform(min_value, max_value)
+    test_input.append(random_value)
 
-x_test = test_data.drop("prognosis", axis=1)
-y_test = test_data["prognosis"]
+test_values = np.array(test_input).reshape(1, -1);
 
-# training model
-model =  DecisionTreeClassifier(random_state=42)
-model.fit(x_test, y_test)
+dtResult = useDecisionTree(test_values);
+rfResult = useRandomForest(test_values);
+knResult = useKNeighbors(test_values);
+svcResult = useSVC(test_values);
 
-# prediction
-y_prediction = model.predict(x_test)
-print(y_prediction)
-print(accuracy_score(y_test, y_prediction))
+print(f"DecisionTree result: '{dtResult[0]}' ({dtResult[1]}% of accuracy)");
+print(f"RandomForest result: '{rfResult[0]}' ({rfResult[1]}% of accuracy)");
+print(f"K-nearest result: '{knResult[0]}' ({knResult[1]}% of accuracy)");
+print(f"SVC result: '{svcResult[0]}' ({svcResult[1]}% of accuracy)");
