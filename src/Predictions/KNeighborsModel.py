@@ -1,13 +1,13 @@
-from src.ReadDatasets import getTestingData, getTrainingData
-from sklearn.tree import DecisionTreeClassifier
+from src.Utils.ReadDatasets import getTestingData, getTrainingData
+from sklearn.neighbors import KNeighborsClassifier
 from sklearn.metrics import accuracy_score
 
-def useDecisionTree(test_values):
+def useKNeighbors(test_values):
     x_train, y_train = getTrainingData();    
     x_test, y_test = getTestingData();    
 
     # training model
-    model = DecisionTreeClassifier(random_state=42)
+    model = KNeighborsClassifier()
     model.fit(x_train, y_train)
 
     y_test_prediction = model.predict(x_test)

@@ -1,4 +1,4 @@
-from src.ReadDatasets import getTestingData, getTrainingData
+from src.Utils.ReadDatasets import getTestingData, getTrainingData
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score
 
