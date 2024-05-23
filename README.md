@@ -44,7 +44,7 @@ API POST Endpoint to receive symptons from front-end and predict prognosis
 
 **Endpoint:** `https://api-baymed.onrender.com/api/prediction`  
 **Method:** `POST`  
-**Params:** `Array: ['sympton_key_1', 'sympton_key_2', 'sympton_key_3', ... , 'sympton_key_N']`  
+**Params:** `JSON: { "symptons": ['sympton_key_1', 'sympton_key_2', 'sympton_key_3', ... , 'sympton_key_N'] }` 
 **Response: Object collection**   
 ``` 
 [

@@ -11,9 +11,9 @@ load_dotenv(dotenv_path)
 
 app = Flask(__name__)
 
-@app.route(os.environ.get("API_PREFIX") + "/prediction", methods=['GET'])
+@app.route(os.environ.get("API_PREFIX") + "/prediction", methods=['POST'])
 def prediction():
-    return predict(request.form.get("symptons"));
+    return predict(request.get_json()["symptons"]);
 
 @app.route(os.environ.get("API_PREFIX") + "/symptons", methods=['GET'])
 def symptons():
