@@ -14,8 +14,6 @@ def useKNeighbors(test_values):
 
     score = accuracy_score(y_test, y_test_prediction)
 
-    print("Acc score: {:.2f}%".format(score * 100))
-
     # model predict
     prediction = model.predict(test_values)
 
