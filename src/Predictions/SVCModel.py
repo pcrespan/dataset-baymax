@@ -18,8 +18,6 @@ def useSVC(test_values):
 
     score = accuracy_score(y_test, y_test_prediction)
 
-    test_values = scaler.transform(test_values)
-    
-    prediction = model.predict(test_values)
+    prediction = model.predict(scaler.transform(test_values))
 
     return [prediction[0], round(score * 100, 2)]
