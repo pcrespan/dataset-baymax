@@ -26,22 +26,22 @@ def predict(symptomsData):
     return [
         {
             "method": "DecisionTree",
-            "prognosis": dtResult[0],
+            "prognosis": getPrognosis(dtResult[0]),
             "accuracy": dtResult[1],
         },
         {
             "method": "RandomForest",
-            "prognosis": rfResult[0],
+            "prognosis": getPrognosis(rfResult[0]),
             "accuracy": rfResult[1],
         },
         {
             "method": "K-nearest",
-            "prognosis": knResult[0],
+            "prognosis": getPrognosis(knResult[0]),
             "accuracy": knResult[1],
         },
         {
             "method": "SVC",
-            "prognosis": svcResult[0],
+            "prognosis": getPrognosis(svcResult[0]),
             "accuracy": svcResult[1],
         },
     ];
@@ -705,8 +705,8 @@ def getSymptoms():
         }
     ];
 
-def getPrognosis():
-    return [
+def getPrognosis(prognosisKey):
+    prognosisData = [
         {
             "key": "Fungal infection",
             "en": "Fungal infection",
@@ -913,6 +913,8 @@ def getPrognosis():
             "ptbr": "Impetigo"
         }
     ];
+
+    return next(prognosis for prognosis in prognosisData if prognosis['key'] == prognosisKey);
 
 
 def getDatasetColumns():
