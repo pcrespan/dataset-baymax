@@ -5,23 +5,23 @@ from src.Predictions.RandomForestModel import useRandomForest
 from src.Predictions.KNeighborsModel import useKNeighbors
 from src.Predictions.SVCModel import useSVC
 
-def predict(symptonsData):
-    formattedSymptons = [];
+def predict(symptomsData):
+    formattedSymptoms = [];
     options = getDatasetColumns();
     
     for i in range(0, len(options)):
-        formattedSymptons.append(0);
+        formattedSymptoms.append(0);
 
-    for i in range(0, len(symptonsData)):
-        index = options.index(symptonsData[i]);
-        formattedSymptons[index] = 1;
+    for i in range(0, len(symptomsData)):
+        index = options.index(symptomsData[i]);
+        formattedSymptoms[index] = 1;
     
-    formattedSymptons = np.array(formattedSymptons).reshape(1, -1);
+    formattedSymptoms = np.array(formattedSymptoms).reshape(1, -1);
 
-    dtResult = useDecisionTree(formattedSymptons);
-    rfResult = useRandomForest(formattedSymptons);
-    knResult = useKNeighbors(formattedSymptons);
-    svcResult = useSVC(formattedSymptons);
+    dtResult = useDecisionTree(formattedSymptoms);
+    rfResult = useRandomForest(formattedSymptoms);
+    knResult = useKNeighbors(formattedSymptoms);
+    svcResult = useSVC(formattedSymptoms);
 
     return [
         {
@@ -46,7 +46,7 @@ def predict(symptonsData):
         },
     ];
 
-def getSymptons():
+def getSymptoms():
     return [
         {
             "key": "itching",

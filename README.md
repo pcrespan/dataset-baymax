@@ -13,10 +13,10 @@
 
 # API Docs
 
-## Get symptons [GET]
-API GET Endpoint to retrieve array key => values with all symptons from dataset.
+## Get symptoms [GET]
+API GET Endpoint to retrieve array key => values with all symptoms from dataset.
 
-**Endpoint:** `https://api-baymed.onrender.com/api/symptons`  
+**Endpoint:** `https://api-baymed.onrender.com/api/symptoms`  
 **Method:** `GET`  
 **Params:** `None`  
 **Response: Object collection**   
@@ -39,12 +39,12 @@ API GET Endpoint to retrieve array key => values with all symptons from dataset.
 ];
 ```
 
-## Send symptons to prediction [POST]
-API POST Endpoint to receive symptons from front-end and predict prognosis
+## Send symptoms to prediction [POST]
+API POST Endpoint to receive symptoms from front-end and predict prognosis
 
 **Endpoint:** `https://api-baymed.onrender.com/api/prediction`  
 **Method:** `POST`  
-**Params:** `JSON: { "symptons": ['sympton_key_1', 'sympton_key_2', 'sympton_key_3', ... , 'sympton_key_N'] }` 
+**Params:** `JSON: { "symptoms": ['symptom_key_1', 'symptom_key_2', 'symptom_key_3', ... , 'symptom_key_N'] }` 
 **Response: Object collection**   
 ``` 
 [
