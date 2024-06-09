@@ -1,6 +1,6 @@
 import pandas as pd
 
-# features (X) => symptons 
+# features (X) => symptoms 
 # target (Y) => prognosis
 def getTrainingData():
     train_data = pd.read_csv("dataset/Training.csv")

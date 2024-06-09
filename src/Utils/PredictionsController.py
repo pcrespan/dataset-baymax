@@ -5,48 +5,48 @@ from src.Predictions.RandomForestModel import useRandomForest
 from src.Predictions.KNeighborsModel import useKNeighbors
 from src.Predictions.SVCModel import useSVC
 
-def predict(symptonsData):
-    formattedSymptons = [];
+def predict(symptomsData):
+    formattedSymptoms = [];
     options = getDatasetColumns();
     
     for i in range(0, len(options)):
-        formattedSymptons.append(0);
+        formattedSymptoms.append(0);
 
-    for i in range(0, len(symptonsData)):
-        index = options.index(symptonsData[i]);
-        formattedSymptons[index] = 1;
+    for i in range(0, len(symptomsData)):
+        index = options.index(symptomsData[i]);
+        formattedSymptoms[index] = 1;
     
-    formattedSymptons = np.array(formattedSymptons).reshape(1, -1);
+    formattedSymptoms = np.array(formattedSymptoms).reshape(1, -1);
 
-    dtResult = useDecisionTree(formattedSymptons);
-    rfResult = useRandomForest(formattedSymptons);
-    knResult = useKNeighbors(formattedSymptons);
-    svcResult = useSVC(formattedSymptons);
+    dtResult = useDecisionTree(formattedSymptoms);
+    rfResult = useRandomForest(formattedSymptoms);
+    knResult = useKNeighbors(formattedSymptoms);
+    svcResult = useSVC(formattedSymptoms);
 
     return [
         {
             "method": "DecisionTree",
-            "prognosis": dtResult[0],
+            "prognosis": getPrognosis(dtResult[0]),
             "accuracy": dtResult[1],
         },
         {
             "method": "RandomForest",
-            "prognosis": rfResult[0],
+            "prognosis": getPrognosis(rfResult[0]),
             "accuracy": rfResult[1],
         },
         {
             "method": "K-nearest",
-            "prognosis": knResult[0],
+            "prognosis": getPrognosis(knResult[0]),
             "accuracy": knResult[1],
         },
         {
             "method": "SVC",
-            "prognosis": svcResult[0],
+            "prognosis": getPrognosis(svcResult[0]),
             "accuracy": svcResult[1],
         },
     ];
 
-def getSymptons():
+def getSymptoms():
     return [
         {
             "key": "itching",
@@ -705,8 +705,8 @@ def getSymptons():
         }
     ];
 
-def getPrognosis():
-    return [
+def getPrognosis(prognosisKey):
+    prognosisData = [
         {
             "key": "Fungal infection",
             "en": "Fungal infection",
@@ -913,6 +913,8 @@ def getPrognosis():
             "ptbr": "Impetigo"
         }
     ];
+
+    return next(prognosis for prognosis in prognosisData if prognosis['key'] == prognosisKey);
 
 
 def getDatasetColumns():
